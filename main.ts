@@ -40,6 +40,12 @@ namespace Drones {
         //% block="Roll right"
         Roll_right = 0x23
     }
+    export enum Sensoroptions{
+        //% block="Voltage" 
+        Voltage = 0x01,
+        //% block="Height"
+        Height = 0x02
+    }
     function Dronesback():boolean{
         basic.pause(300)
         rxBuff = serial.readBuffer(3)
@@ -92,7 +98,17 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         while(!Dronesback());
     }
-    
+    //% block="Get %state Value"
+    export function Get_Sensor(state:Sensoroptions): number{
+        let txBuff = pins.createBuffer(4)
+        let rxBuff = pins.createBuffer(3)
+        txBuff[0] = 0xEF
+        txBuff[1] = 0
+        txBuff[2] = 0x02
+        serial.writeBuffer(txBuff)
+        rxBuff = serial.readBuffer(3)
+        return rxBuff[1]+rxBuff[2]
+    }
 
     
 }
