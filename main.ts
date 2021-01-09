@@ -62,7 +62,7 @@ namespace Drones {
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
     }
 
-    //% blockId=fans block="Basic action %basicstate"
+    //% block="Basic action %basicstate"
     export function Basic_action(basicstate: Basicoptions): void {
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
@@ -73,7 +73,7 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         while(!Dronesback());
     }
-    //% blockId=fans block="Move action %basicstate by %distance"
+    //% block="Move action %basicstate by %distance"
     export function Move_action(basicstate: Basicoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
