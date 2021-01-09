@@ -1,7 +1,7 @@
 /**
 * Functions to UVA by ELECFREAKS Co.,Ltd.
 */
-//% color=#FF0000  icon="\uf85f" block="Drones" blockId="Drones"
+//% color=#FF0000  icon="\uf072" block="Drones" blockId="Drones"
 namespace Drones {
     let txBuff = pins.createBuffer(9)
     let rxBuff = pins.createBuffer(3)
