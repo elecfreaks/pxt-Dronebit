@@ -25,12 +25,6 @@ namespace Drones {
      * @param folderNum Specify a floder , eg: 0
      */
     //% blockId=fans block="Motor fan %Rjpin toggle to $fanstate || speed %speed \\%"
-    //% Rjpin.fieldEditor="gridpicker"
-    //% Rjpin.fieldOptions.columns=2
-    //% fanstate.shadow="toggleOnOff"
-    //% subcategory=Excute group="Digital" color=#EA5532
-    //% speed.min=0 speed.max=100
-    //% expandableArgumentMode="toggle"
     export function motorFan(fanstate: boolean, speed: number = 100): void {
         let pin = AnalogPin.P1
         if (fanstate) {
