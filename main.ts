@@ -80,7 +80,7 @@ namespace Drones {
         while(!Dronesback());
     }
     //% block="Move action %basicstate by %distance cm"
-    export function Move_action(basicstate: Basicoptions,distance:number): void {
+    export function Move_action(basicstate: Directionoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
