@@ -73,7 +73,7 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         while(!Dronesback());
     }
-    //% block="Move action %basicstate by %distance"
+    //% block="Move action %basicstate by %distance cm"
     export function Move_action(basicstate: Basicoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
