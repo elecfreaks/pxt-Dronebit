@@ -3,48 +3,35 @@
 */
 //% color=#FF0000  icon="\uf072" block="Drones" blockId="Drones"
 namespace Drones {
-    let txBuff = pins.createBuffer(9)
     let rxBuff = pins.createBuffer(3)
-        export enum DigitalRJPin {
-        //% block="J1" 
-        J1,
-        //% block="J2"
-        J2,
-        //% block="J3"
-        J3,
-        //% block="J4"
-        J4
+    export enum  Basicoptions{
+        //% block="Take off" 
+        Take_off = 0x01,
+        //% block="Landing"
+        Landing = 0x02
     }
-    //% blockId=init block="Init UAV"
-    export function initDrones():void{
+    /**
+    * TODO: Waiting for module initialize.
+    */
+    //% block="Initialize UAV"
+    export function initModule():void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
     }
-
     /**
      * TODO: Loop songs in folders
      * @param folderNum Specify a floder , eg: 0
      */
-    //% blockId=fans block="Motor fan %Rjpin toggle to $fanstate || speed %speed \\%"
-    export function motorFan(fanstate: boolean, speed: number = 100): void {
-        let pin = AnalogPin.P1
-        if (fanstate) {
-            pins.analogSetPeriod(pin, 100)
-            pins.analogWritePin(pin, Math.map(speed, 0, 100, 0, 1023))
-        }
-        else {
-            pins.analogWritePin(pin, 0)
-            speed = 0
-        }
+    //% blockId=fans block="Basic action %basicstate"
+    export function Basic_action(basicstate: Basicoptions): void {
+        let txBuff = pins.createBuffer(4)
+        txBuff[0] = 0xEF
+        txBuff[1] = 0
+        txBuff[2] = 0x01
+        txBuff[3] = basicstate
+        serial.writeBuffer(txBuff)
     }
 
     
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 }
