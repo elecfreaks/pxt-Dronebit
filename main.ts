@@ -98,23 +98,7 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         //while(!Dronesback());
     }
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
-    //% block="Urgent action %urgentstate"
-    //% weight=80
-    export function Urgent_action(urgentstate:Urgentoptions):void{
-        let txBuff = pins.createBuffer(4)
-        let rxBuff = pins.createBuffer(3)
-        txBuff[0] = 0xEF
-        txBuff[1] = 0
-        txBuff[2] = 0x01
-        txBuff[3] = urgentstate
-        serial.writeBuffer(txBuff)
-        //while(!Dronesback());
-    }
+
     /**
      * Shows a rainbow pattern on all LEDs.
      * @param startHue the start hue value for the rainbow, eg: 1
@@ -190,5 +174,21 @@ namespace Drones {
         rxBuff = serial.readBuffer(3)
         return rxBuff[2]<<8 + rxBuff[1]
     }
-
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
+    //% block="Urgent action %urgentstate"
+    //% weight=10 subcategory=Caution!
+    export function Urgent_action(urgentstate:Urgentoptions):void{
+        let txBuff = pins.createBuffer(4)
+        let rxBuff = pins.createBuffer(3)
+        txBuff[0] = 0xEF
+        txBuff[1] = 0
+        txBuff[2] = 0x01
+        txBuff[3] = urgentstate
+        serial.writeBuffer(txBuff)
+        //while(!Dronesback());
+    }
 }
