@@ -2,6 +2,7 @@
 * Functions to UVA by ELECFREAKS Co.,Ltd.
 */
 //% color=#FF0000  icon="\uf072" block="Drones" blockId="Drones"
+//% groups='["Basic", "Caution!"]'
 namespace Drones {
     let rxBuff = pins.createBuffer(3)
     export enum Basicoptions{
@@ -70,7 +71,7 @@ namespace Drones {
      * @param endHue the end hue value for the rainbow, eg: 360
      */
     //% block="Initialize UAV"
-    //% weight=100
+    //% weight=100 Group="Basic"
     export function initModule():void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
         control.inBackground(function () {
@@ -87,7 +88,7 @@ namespace Drones {
      * @param endHue the end hue value for the rainbow, eg: 360
      */
     //% block="Basic action %basicstate"
-    //% weight=90
+    //% weight=90 Group="Basic"
     export function Basic_action(basicstate: Basicoptions): void {
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
@@ -105,7 +106,7 @@ namespace Drones {
      * @param endHue the end hue value for the rainbow, eg: 360
      */
     //% block="Move action %basicstate by %distance cm"
-    //% weight=70
+    //% weight=70 Group="Basic"
     export function Move_action(basicstate: Directionoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
@@ -125,7 +126,7 @@ namespace Drones {
         //while(!Dronesback());
     }
     //% block="Rotation action %rotationstate by %angle °"
-    //% weight=65
+    //% weight=65 Group="Basic"
     export function Rotation_action(rotationstate:Angleoptions, angle:number):void{
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
@@ -145,7 +146,7 @@ namespace Drones {
         //while(!Dronesback());
     }
     //% block="UAV hovering %time S"
-    //% weight=60
+    //% weight=60 Group="Basic"
     export function Hovering(time:number):void{
         let txBuff = pins.createBuffer(5)
         txBuff[0] = 0xEF
@@ -162,7 +163,7 @@ namespace Drones {
      * @param endHue the end hue value for the rainbow, eg: 360
      */
     //% block="Get %state Value"
-    //% weight=50
+    //% weight=50 Group="Basic"
     export function Get_Sensor(state:Sensoroptions): number{
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
@@ -180,7 +181,7 @@ namespace Drones {
      * @param endHue the end hue value for the rainbow, eg: 360
      */
     //% block="Urgent action %urgentstate"
-    //% weight=10 Group="Caution!""
+    //% weight=10 Group="Caution!"
     export function Urgent_action(urgentstate:Urgentoptions):void{
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
