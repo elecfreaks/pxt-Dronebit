@@ -180,7 +180,7 @@ namespace Drones {
      * @param endHue the end hue value for the rainbow, eg: 360
      */
     //% block="Urgent action %urgentstate"
-    //% weight=10 subcategory=Caution!
+    //% weight=10 Group="Caution!""
     export function Urgent_action(urgentstate:Urgentoptions):void{
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
