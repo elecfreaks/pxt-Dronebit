@@ -77,7 +77,7 @@ namespace Drones {
         txBuff[2] = 0x01
         txBuff[3] = basicstate
         serial.writeBuffer(txBuff)
-        while(!Dronesback());
+        //while(!Dronesback());
     }
     //% block="Move action %basicstate by %distance cm"
     export function Move_action(basicstate: Directionoptions,distance:number): void {
@@ -96,7 +96,7 @@ namespace Drones {
             txBuff[5] = 0
         }
         serial.writeBuffer(txBuff)
-        while(!Dronesback());
+        //while(!Dronesback());
     }
     //% block="Get %state Value"
     export function Get_Sensor(state:Sensoroptions): number{
@@ -105,10 +105,10 @@ namespace Drones {
         txBuff[0] = 0xEF
         txBuff[1] = 0
         txBuff[2] = 0x02
+        txBuff[3] = state
         serial.writeBuffer(txBuff)
         rxBuff = serial.readBuffer(3)
-        return rxBuff[1]+rxBuff[2]
+        return rxBuff[2]<<8 + rxBuff[1]
     }
 
-    
 }
