@@ -65,8 +65,10 @@ namespace Drones {
         return false
     }
     /**
-    * TODO: Waiting for module initialize.
-    */
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
     //% block="Initialize UAV"
     //% weight=100
     export function initModule():void{
@@ -79,7 +81,11 @@ namespace Drones {
             basic.pause(1000)
         })
     }
-
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
     //% block="Basic action %basicstate"
     //% weight=90
     export function Basic_action(basicstate: Basicoptions): void {
@@ -92,6 +98,11 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         //while(!Dronesback());
     }
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
     //% block="Urgent action %urgentstate"
     //% weight=80
     export function Urgent_action(urgentstate:Urgentoptions):void{
@@ -104,6 +115,11 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         //while(!Dronesback());
     }
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
     //% block="Move action %basicstate by %distance cm"
     //% weight=70
     export function Move_action(basicstate: Directionoptions,distance:number): void {
@@ -124,8 +140,25 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         //while(!Dronesback());
     }
-    //% block="Get %state Value"
+    //% block="UAV hovering %time S"
     //% weight=60
+    export function Hovering(time:number):void{
+        let txBuff = pins.createBuffer(5)
+        txBuff[0] = 0xEF
+        txBuff[1] = 1
+        txBuff[2] = 0x01
+        txBuff[3] = 0x04
+        txBuff[4] = time
+        serial.writeBuffer(txBuff)
+        basic.pause(time * 1000)
+    }
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
+    //% block="Get %state Value"
+    //% weight=50
     export function Get_Sensor(state:Sensoroptions): number{
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
