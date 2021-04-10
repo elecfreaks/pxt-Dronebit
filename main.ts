@@ -140,6 +140,25 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         //while(!Dronesback());
     }
+    //% block="Rotation action %rotationstate by %angle °"
+    export function Rotation_action(rotationstate:Angleoptions, angle:number):void{
+        let txBuff = pins.createBuffer(6)
+        let rxBuff = pins.createBuffer(3)
+        txBuff[0] = 0xEF
+        txBuff[1] = 2
+        txBuff[2] = 0x01
+        txBuff[3] = rotationstate
+        if(angle > 255){
+            txBuff[4] = 255
+            txBuff[5] = angle - 255
+        }
+        else{
+            txBuff[4] = angle
+            txBuff[5] = 0
+        }
+        serial.writeBuffer(txBuff)
+        //while(!Dronesback());
+    }
     //% block="UAV hovering %time S"
     //% weight=60
     export function Hovering(time:number):void{
