@@ -141,6 +141,7 @@ namespace Drones {
         //while(!Dronesback());
     }
     //% block="Rotation action %rotationstate by %angle °"
+    //% weight=65
     export function Rotation_action(rotationstate:Angleoptions, angle:number):void{
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
