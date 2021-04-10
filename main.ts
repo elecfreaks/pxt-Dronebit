@@ -68,6 +68,7 @@ namespace Drones {
     * TODO: Waiting for module initialize.
     */
     //% block="Initialize UAV"
+    //% weight=100
     export function initModule():void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
         control.inBackground(function () {
@@ -80,6 +81,7 @@ namespace Drones {
     }
 
     //% block="Basic action %basicstate"
+    //% weight=90
     export function Basic_action(basicstate: Basicoptions): void {
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
@@ -91,6 +93,7 @@ namespace Drones {
         //while(!Dronesback());
     }
     //% block="Urgent action %urgentstate"
+    //% weight=80
     export function Urgent_action(urgentstate:Urgentoptions):void{
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
@@ -102,6 +105,7 @@ namespace Drones {
         //while(!Dronesback());
     }
     //% block="Move action %basicstate by %distance cm"
+    //% weight=70
     export function Move_action(basicstate: Directionoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
@@ -121,6 +125,7 @@ namespace Drones {
         //while(!Dronesback());
     }
     //% block="Get %state Value"
+    //% weight=60
     export function Get_Sensor(state:Sensoroptions): number{
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
