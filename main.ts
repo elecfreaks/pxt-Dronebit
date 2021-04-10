@@ -4,11 +4,15 @@
 //% color=#FF0000  icon="\uf072" block="Drones" blockId="Drones"
 namespace Drones {
     let rxBuff = pins.createBuffer(3)
-    export enum  Basicoptions{
+    export enum Basicoptions{
         //% block="Take off" 
         Take_off = 0x01,
         //% block="Landing"
         Landing = 0x02
+    }
+    export enum Urgentoptions{
+        //% block="Emergency stop"
+        Emergency_stop = 0x05
     }
     export enum Directionoptions{
         //% block="Up" 
@@ -66,6 +70,13 @@ namespace Drones {
     //% block="Initialize UAV"
     export function initModule():void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
+        control.inBackground(function () {
+            let txBuff = pins.createBuffer(2)
+            txBuff[0] = 0xAF
+            txBuff[1] = 0xFA
+            serial.writeBuffer(txBuff)
+            basic.pause(1000)
+        })
     }
 
     //% block="Basic action %basicstate"
@@ -76,6 +87,17 @@ namespace Drones {
         txBuff[1] = 0
         txBuff[2] = 0x01
         txBuff[3] = basicstate
+        serial.writeBuffer(txBuff)
+        //while(!Dronesback());
+    }
+    //% block="Urgent action %urgentstate"
+    export function Urgent_action(urgentstate:Urgentoptions):void{
+        let txBuff = pins.createBuffer(4)
+        let rxBuff = pins.createBuffer(3)
+        txBuff[0] = 0xEF
+        txBuff[1] = 0
+        txBuff[2] = 0x01
+        txBuff[3] = urgentstate
         serial.writeBuffer(txBuff)
         //while(!Dronesback());
     }
