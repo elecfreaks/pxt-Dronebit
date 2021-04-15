@@ -75,11 +75,13 @@ namespace Drones {
     export function initModule():void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
         control.inBackground(function () {
-            let txBuff = pins.createBuffer(2)
-            txBuff[0] = 0xAF
-            txBuff[1] = 0xFA
-            serial.writeBuffer(txBuff)
-            basic.pause(1000)
+            while(true) {
+                let txBuff = pins.createBuffer(2)
+                txBuff[0] = 0xAF
+                txBuff[1] = 0xFA
+                serial.writeBuffer(txBuff)
+                basic.pause(1000)
+            }
         })
     }
     /**
