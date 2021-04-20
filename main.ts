@@ -53,19 +53,13 @@ namespace Drones {
     }
     function WaitCellback():boolean{
         rxBuff = serial.readBuffer(3)
-        
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
-            basic.showNumber(1)
+            radio.sendString("S1")
             return true
         }
-        else if(rxBuff[0] == 0x01 && rxBuff[1] == 0x02){
-            basic.showNumber(0)
-            basic.pause(1000)
+        else {
+            radio.sendString("E1")
             control.reset()
-            //执行错误
-        }
-        else{
-            return false
         }
         return false
     }
