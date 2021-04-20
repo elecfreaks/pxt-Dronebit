@@ -52,8 +52,8 @@ namespace Drones {
         Height = 0x02
     }
     function WaitCellback():boolean{
-        basic.pause(1000)
         rxBuff = serial.readBuffer(3)
+        basic.showNumber(0)
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
             return true
         }
