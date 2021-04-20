@@ -107,20 +107,21 @@ namespace Drones {
      * @param startHue the start hue value for the rainbow, eg: 1
      * @param endHue the end hue value for the rainbow, eg: 360
      */
-    //% block="Move action %basicstate by %distance cm"
+    //% block="Move action %Directionstate by %distance cm"
     //% weight=70 group="Basic"
-    export function Move_action(basicstate: Directionoptions,distance:number): void {
+    export function Move_action(Directionstate: Directionoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
-        txBuff[1] = 2
         txBuff[2] = 0x01
-        txBuff[3] = basicstate
+        txBuff[3] = Directionstate
         if(distance > 255){
+            txBuff[1] = 2
             txBuff[4] = 255
             txBuff[5] = distance - 255
         }
         else{
+            txBuff[1] = 1
             txBuff[4] = distance
             txBuff[5] = 0
         }
@@ -133,14 +134,16 @@ namespace Drones {
         let txBuff = pins.createBuffer(6)
         let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
-        txBuff[1] = 2
+        
         txBuff[2] = 0x01
         txBuff[3] = rotationstate
         if(angle > 255){
+            txBuff[1] = 2
             txBuff[4] = 255
             txBuff[5] = angle - 255
         }
         else{
+            txBuff[1] = 1
             txBuff[4] = angle
             txBuff[5] = 0
         }
