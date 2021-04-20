@@ -177,7 +177,7 @@ namespace Drones {
         txBuff[3] = state
         serial.writeBuffer(txBuff)
         rxBuff = serial.readBuffer(3)
-        return rxBuff[1]
+        return rxBuff[2]<<8
     }
     /**
      * Shows a rainbow pattern on all LEDs.
