@@ -195,6 +195,6 @@ namespace Drones {
         txBuff[2] = 0x01
         txBuff[3] = urgentstate
         serial.writeBuffer(txBuff)
-        WaitCellback()
+        while(true){}
     }
 }
