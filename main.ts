@@ -51,8 +51,8 @@ namespace Drones {
         //% block="Height"
         Height = 0x02
     }
-    function Dronesback():boolean{
-        basic.pause(300)
+    function WaitCellback():boolean{
+        basic.pause(1000)
         rxBuff = serial.readBuffer(3)
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
             return true
@@ -99,7 +99,7 @@ namespace Drones {
         txBuff[2] = 0x01
         txBuff[3] = basicstate
         serial.writeBuffer(txBuff)
-        //while(!Dronesback());
+        WaitCellback()
     }
 
     /**
@@ -126,7 +126,7 @@ namespace Drones {
             txBuff[5] = 0
         }
         serial.writeBuffer(txBuff)
-        //while(!Dronesback());
+        WaitCellback()
     }
     //% block="Rotation action %rotationstate by %angle °"
     //% weight=65 group="Basic"
@@ -148,7 +148,7 @@ namespace Drones {
             txBuff[5] = 0
         }
         serial.writeBuffer(txBuff)
-        //while(!Dronesback());
+        WaitCellback()
     }
     //% block="UAV hovering %time S"
     //% weight=60 group="Basic"
@@ -195,6 +195,6 @@ namespace Drones {
         txBuff[2] = 0x01
         txBuff[3] = urgentstate
         serial.writeBuffer(txBuff)
-        //while(!Dronesback());
+        WaitCellback()
     }
 }
