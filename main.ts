@@ -58,6 +58,7 @@ namespace Drones {
             return true
         }
         else if(rxBuff[0] == 0x01 && rxBuff[1] == 0x02){
+            control.reset()
             //执行错误
         }
         else{
