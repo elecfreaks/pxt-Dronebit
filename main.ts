@@ -201,7 +201,13 @@ namespace Drones {
         txBuff[3] = state
         serial.writeBuffer(txBuff)
         rxBuff = serial.readBuffer(3)
-        return rxBuff[1] + rxBuff[2]
+        if (state == Sensoroptions.Voltage){
+            return (rxBuff[1] + rxBuff[2]) * 0.1
+        }
+        else{
+            return rxBuff[1] + rxBuff[2]
+        }
+        
     }
     /**
      * Shows a rainbow pattern on all LEDs.
