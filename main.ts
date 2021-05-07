@@ -106,7 +106,7 @@ namespace Drones {
      */
     //% block="Setting UAV power $power \\%"
     //% power.min=0 power.max=100
-    //% weight=90 group="Basic"
+    //% weight=89 group="Basic"
     export function UAV_speed(power:number):void{
         let txBuff = pins.createBuffer(4)
         txBuff[0] = 0xEF
@@ -163,6 +163,16 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
+    //% block="Roll action %rotationstate "
+    //% weight=64 group="Basic"
+    export function Roll_action(rollstate:Angleoptions, angle:number):void{
+        let txBuff = pins.createBuffer(6)
+        txBuff[0] = 0xEF
+        txBuff[2] = 0x01
+        txBuff[3] = rollstate
+        serial.writeBuffer(txBuff)
+        WaitCellback()
+    }
     //% block="UAV hovering %time S"
     //% weight=60 group="Basic"
     export function Hovering(time:number):void{
@@ -175,6 +185,7 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         basic.pause(time * 1000)
     }
+
     /**
      * Shows a rainbow pattern on all LEDs.
      * @param startHue the start hue value for the rainbow, eg: 1
