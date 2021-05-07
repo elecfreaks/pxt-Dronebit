@@ -164,7 +164,7 @@ namespace Drones {
     }
     //% block="Roll action %rotationstate "
     //% weight=64 group="Basic"
-    export function Roll_action(rollstate:Angleoptions, angle:number):void{
+    export function Roll_action(rollstate:Rolloptions, angle:number):void{
         let txBuff = pins.createBuffer(6)
         txBuff[0] = 0xEF
         txBuff[2] = 0x01
