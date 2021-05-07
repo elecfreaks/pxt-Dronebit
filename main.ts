@@ -55,11 +55,11 @@ namespace Drones {
         basic.pause(3000)
         rxBuff = serial.readBuffer(3)
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
-            radio.sendString("S1")
+            radio.sendString("S")
             return true
         }
         else {
-            radio.sendString("E1")
+            radio.sendString("F")
             control.reset()
         }
         return false
