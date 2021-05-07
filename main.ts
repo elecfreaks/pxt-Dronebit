@@ -104,7 +104,8 @@ namespace Drones {
      * @param startHue the start hue value for the rainbow, eg: 1
      * @param endHue the end hue value for the rainbow, eg: 360
      */
-    //% block="Setting UAV power %power %"
+    //% block="Setting UAV power $power \\%"
+    //% power.min=0 power.max=100
     //% weight=90 group="Basic"
     export function UAV_speed(power:number):void{
         let txBuff = pins.createBuffer(4)
