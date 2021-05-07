@@ -92,11 +92,27 @@ namespace Drones {
     //% weight=90 group="Basic"
     export function Basic_action(basicstate: Basicoptions): void {
         let txBuff = pins.createBuffer(4)
-        let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
         txBuff[1] = 0
         txBuff[2] = 0x01
         txBuff[3] = basicstate
+        serial.writeBuffer(txBuff)
+        WaitCellback()
+    }
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
+    //% block="Setting UAV power %power //%"
+    //% weight=90 group="Basic"
+    export function UAV_speed(power:number):void{
+        let txBuff = pins.createBuffer(4)
+        txBuff[0] = 0xEF
+        txBuff[1] = 1
+        txBuff[2] = 0x01
+        txBuff[3] = 0x03
+        txBuff[4] = power
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
@@ -110,7 +126,6 @@ namespace Drones {
     //% weight=70 group="Basic"
     export function Move_action(Directionstate: Directionoptions,distance:number): void {
         let txBuff = pins.createBuffer(6)
-        let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
         txBuff[2] = 0x01
         txBuff[3] = Directionstate
@@ -131,9 +146,7 @@ namespace Drones {
     //% weight=65 group="Basic"
     export function Rotation_action(rotationstate:Angleoptions, angle:number):void{
         let txBuff = pins.createBuffer(6)
-        let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
-        
         txBuff[2] = 0x01
         txBuff[3] = rotationstate
         if(angle > 255){
@@ -188,7 +201,6 @@ namespace Drones {
     //% weight=10 group="Caution!"
     export function Urgent_action(urgentstate:Urgentoptions):void{
         let txBuff = pins.createBuffer(4)
-        let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
         txBuff[1] = 0
         txBuff[2] = 0x01
