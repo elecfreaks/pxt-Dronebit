@@ -88,25 +88,9 @@ namespace Drones {
      * @param startHue the start hue value for the rainbow, eg: 1
      * @param endHue the end hue value for the rainbow, eg: 360
      */
-    //% block="Basic action %basicstate"
-    //% weight=90 group="Basic"
-    export function Basic_action(basicstate: Basicoptions): void {
-        let txBuff = pins.createBuffer(4)
-        txBuff[0] = 0xEF
-        txBuff[1] = 0
-        txBuff[2] = 0x01
-        txBuff[3] = basicstate
-        serial.writeBuffer(txBuff)
-        WaitCellback()
-    }
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
     //% block="Setting UAV power $power \\%"
     //% power.min=0 power.max=100
-    //% weight=89 group="Basic"
+    //% weight=90 group="Basic"
     export function UAV_speed(power:number):void{
         let txBuff = pins.createBuffer(4)
         txBuff[0] = 0xEF
@@ -117,7 +101,22 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
-
+    /**
+     * Shows a rainbow pattern on all LEDs.
+     * @param startHue the start hue value for the rainbow, eg: 1
+     * @param endHue the end hue value for the rainbow, eg: 360
+     */
+    //% block="Basic action %basicstate"
+    //% weight=89 group="Basic"
+    export function Basic_action(basicstate: Basicoptions): void {
+        let txBuff = pins.createBuffer(4)
+        txBuff[0] = 0xEF
+        txBuff[1] = 0
+        txBuff[2] = 0x01
+        txBuff[3] = basicstate
+        serial.writeBuffer(txBuff)
+        WaitCellback()
+    }
     /**
      * Shows a rainbow pattern on all LEDs.
      * @param startHue the start hue value for the rainbow, eg: 1
