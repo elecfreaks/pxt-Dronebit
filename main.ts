@@ -101,7 +101,10 @@ namespace Drones {
             SucFBbeep()
         }
         else{
-            FailFBbeep()
+            while(true){
+                FailFBbeep()
+                basic.pause(1000)
+            }
         }
         if(mode == Runmodes.Master){
             txBuff[0] = mode
