@@ -57,16 +57,29 @@ namespace Drones {
         //% block="Height"
         Height = 0x02
     }
+    function SucFBbeep():void{
+        music.playTone(262, music.beat(BeatFraction.Quarter))
+        music.playTone(523, music.beat(BeatFraction.Whole))
+    }
+    function FailFBbeep():void{
+        music.playTone(523, music.beat(BeatFraction.Quarter))
+        music.playTone(523, music.beat(BeatFraction.Quarter))
+        music.playTone(523, music.beat(BeatFraction.Quarter))
+        music.playTone(523, music.beat(BeatFraction.Quarter))
+    }
     function WaitCellback():boolean{
-        basic.pause(3000)
+        basic.pause(1000)
         rxBuff = serial.readBuffer(3)
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
             radio.sendString("S")
+            SucFBbeep()
             return true
         }
         else {
             radio.sendString("F")
-            control.reset()
+            while(true){
+                FailFBbeep()
+            }
         }
         return false
     }
@@ -79,12 +92,33 @@ namespace Drones {
     //% weight=100 group="Basic"
     export function initModule(mode:Runmodes):void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
+        let txBuff = pins.createBuffer(1)
+        let rxBuff = pins.createBuffer(3)
+        serial.readString()
+        rxBuff = serial.readBuffer(3)
+        if(rxBuff[0]== 0x01){
+            SucFBbeep()
+        }
+        else{
+            FailFBbeep()
+        }
+        if(mode == Runmodes.Master){
+            txBuff[0] = 0x01
+            serial.writeBuffer(txBuff)
+            basic.pause(200)
+        }
+        else{
+            txBuff[0] = 0x02
+            serial.writeBuffer(txBuff)
+            basic.pause(1000)
+            while(true){}
+        }
         control.inBackground(function () {
             while(true) {
-                let txBuff = pins.createBuffer(2)
-                txBuff[0] = 0xAF
-                txBuff[1] = 0xFA
-                serial.writeBuffer(txBuff)
+                let breathBuff = pins.createBuffer(2)
+                breathBuff[0] = 0xAF
+                breathBuff[1] = 0xFA
+                serial.writeBuffer(breathBuff)
                 basic.pause(1000)
             }
         })
@@ -98,6 +132,7 @@ namespace Drones {
     //% power.min=0 power.max=100
     //% weight=90 group="Basic"
     export function UAV_speed(power:number):void{
+        serial.readString()
         let txBuff = pins.createBuffer(5)
         txBuff[0] = 0xEF
         txBuff[1] = 1
@@ -115,6 +150,7 @@ namespace Drones {
     //% block="Basic action %basicstate"
     //% weight=89 group="Basic"
     export function Basic_action(basicstate: Basicoptions): void {
+        serial.readString()
         let txBuff = pins.createBuffer(4)
         txBuff[0] = 0xEF
         txBuff[1] = 0
@@ -131,6 +167,7 @@ namespace Drones {
     //% block="Move action %Directionstate by %distance cm"
     //% weight=70 group="Basic"
     export function Move_action(Directionstate: Directionoptions,distance:number): void {
+        serial.readString()
         let txBuff = pins.createBuffer(6)
         txBuff[0] = 0xEF
         txBuff[2] = 0x01
@@ -151,6 +188,7 @@ namespace Drones {
     //% block="Rotation action %rotationstate by %angle °"
     //% weight=65 group="Basic"
     export function Rotation_action(rotationstate:Angleoptions, angle:number):void{
+        serial.readString()
         let txBuff = pins.createBuffer(6)
         txBuff[0] = 0xEF
         txBuff[2] = 0x01
@@ -171,6 +209,7 @@ namespace Drones {
     //% block="Roll action %rotationstate "
     //% weight=64 group="Basic"
     export function Roll_action(rollstate:Rolloptions):void{
+        serial.readString()
         let txBuff = pins.createBuffer(6)
         txBuff[0] = 0xEF
         txBuff[2] = 0x01
@@ -181,6 +220,7 @@ namespace Drones {
     //% block="UAV hovering %time S"
     //% weight=60 group="Basic"
     export function Hovering(time:number):void{
+        serial.readString()
         let txBuff = pins.createBuffer(5)
         txBuff[0] = 0xEF
         txBuff[1] = 1
@@ -199,6 +239,7 @@ namespace Drones {
     //% block="Get %state Value"
     //% weight=50 group="Basic"
     export function Get_Sensor(state:Sensoroptions): number{
+        serial.readString()
         let txBuff = pins.createBuffer(4)
         let rxBuff = pins.createBuffer(3)
         txBuff[0] = 0xEF
@@ -223,6 +264,7 @@ namespace Drones {
     //% block="Urgent action %urgentstate"
     //% weight=10 group="Caution!"
     export function Urgent_action(urgentstate:Urgentoptions):void{
+        serial.readString()
         let txBuff = pins.createBuffer(4)
         txBuff[0] = 0xEF
         txBuff[1] = 0
