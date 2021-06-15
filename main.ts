@@ -5,9 +5,15 @@
 //% groups='["Basic", "Caution!"]'
 namespace Drones {
     let rxBuff = pins.createBuffer(3)
+    export enum Runmodes{
+        //% block="Remote"
+        Remote = 0x01,
+        //% block="Master"
+        Master = 0x02
+    }
     export enum Basicoptions{
         //% block="Take off" 
-        Take_off = 0x01,
+        Takeoff = 0x01,
         //% block="Landing"
         Landing = 0x02
     }
@@ -31,7 +37,7 @@ namespace Drones {
     }
     export enum Angleoptions{
         //% block="Left" 
-        Take_off = 0x16,
+        Takeoff = 0x16,
         //% block="Right"
         Landing = 0x17
     }
@@ -69,7 +75,7 @@ namespace Drones {
      * @param startHue the start hue value for the rainbow, eg: 1
      * @param endHue the end hue value for the rainbow, eg: 360
      */
-    //% block="Initialize UAV"
+    //% block="Initialize UAV to %mode mode"
     //% weight=100 group="Basic"
     export function initModule():void{
         serial.redirect(SerialPin.P1, SerialPin.P2, 115200)
