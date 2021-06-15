@@ -79,6 +79,7 @@ namespace Drones {
             radio.sendString("F")
             while(true){
                 FailFBbeep()
+                basic.pause(1000)
             }
         }
         return false
