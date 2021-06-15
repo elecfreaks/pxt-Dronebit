@@ -6,10 +6,10 @@
 namespace Drones {
     let rxBuff = pins.createBuffer(3)
     export enum Runmodes{
-        //% block="Remote"
-        Remote = 0x01,
         //% block="Master"
-        Master = 0x02
+        Master = 0x01,
+        //% block="Remote"
+        Remote = 0x02
     }
     export enum Basicoptions{
         //% block="Take off" 
@@ -103,12 +103,12 @@ namespace Drones {
             FailFBbeep()
         }
         if(mode == Runmodes.Master){
-            txBuff[0] = 0x01
+            txBuff[0] = mode
             serial.writeBuffer(txBuff)
             basic.pause(200)
         }
         else{
-            txBuff[0] = 0x02
+            txBuff[0] = mode
             serial.writeBuffer(txBuff)
             basic.pause(1000)
             while(true){}
