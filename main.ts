@@ -74,7 +74,11 @@ namespace Drones {
         else {
             radio.sendString("F")
             while(true){
-                music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
+                music.setTempo(200)
+                for (let index = 0; index < 5; index++) {
+                    music.playTone(784, music.beat(BeatFraction.Eighth))
+                    basic.pause(100)
+                }
                 basic.pause(1000)
             }
         }
