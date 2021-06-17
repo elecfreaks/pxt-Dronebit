@@ -92,7 +92,7 @@ namespace Drones {
         rxBuff = serial.readBuffer(3)
         while(rxBuff[1] == 0x02){
             music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
-            basic.pause(1000)
+            basic.pause(3000)
         }
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
         txBuff[0] = mode
