@@ -99,6 +99,30 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         if(mode == Runmodes.Remote){
             serial.redirectToUSB()
+            while(true){
+            basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . # . .
+            `)
+            basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . # . .
+            . # . # .
+            . . . . .
+            `)
+            basic.showLeds(`
+            . # # # .
+            # . . . #
+            . . . . .
+            . . . . .
+            . . . . .
+            `)
+            }
+
         }
         control.inBackground(function () {
             while(true) {
