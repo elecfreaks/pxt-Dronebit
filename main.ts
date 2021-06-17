@@ -73,17 +73,16 @@ namespace Drones {
         }
         else {
             radio.sendString("F")
-            while(true){
-                music.setTempo(200)
-                for (let index = 0; index < 5; index++) {
-                    music.playTone(784, music.beat(BeatFraction.Eighth))
-                    basic.pause(100)
+            music.setTempo(200)
+            for (let index = 0; index < 5; index++) {
+                music.playTone(784, music.beat(BeatFraction.Eighth))
+                basic.pause(100)
                 }
-                basic.pause(1000)
+            return false
             }
+            return false
         }
-        return false
-    }
+    
     /**
      * Shows a rainbow pattern on all LEDs.
      * @param startHue the start hue value for the rainbow, eg: 1
@@ -100,21 +99,13 @@ namespace Drones {
         if(rxBuff[1] == 0x01){
             SucFBbeep()
         }
-        else if(rxBuff[1] == 0x02){
+        else{
             FailFBbeep()
             while(true){}
         }
-        if(mode == Runmodes.Master){
-            txBuff[0] = mode
-            serial.writeBuffer(txBuff)
-            basic.pause(200)
-        }
-        else{
-            txBuff[0] = mode
-            serial.writeBuffer(txBuff)
-            basic.pause(1000)
-            while(true){}
-        }
+        txBuff[0] = mode
+        serial.writeBuffer(txBuff)
+        while(mode == Runmodes.Remote){}
         control.inBackground(function () {
             while(true) {
                 let breathBuff = pins.createBuffer(2)
