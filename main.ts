@@ -90,15 +90,11 @@ namespace Drones {
         let rxBuff = pins.createBuffer(3)
         serial.readString()
         rxBuff = serial.readBuffer(3)
-        if(rxBuff[1] == 0x01){
-basic.showNumber(0)
-            music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
-        }
-        else{
-basic.showNumber(1)
+        while(rxBuff[1] == 0x02){
             music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
-            while(true){}
+            basic.pause(1000)
         }
+        music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
         txBuff[0] = mode
         serial.writeBuffer(txBuff)
         while(mode == Runmodes.Remote){}
