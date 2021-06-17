@@ -275,6 +275,10 @@ namespace Drones {
         txBuff[2] = 0x01
         txBuff[3] = urgentstate
         serial.writeBuffer(txBuff)
-        while(true){}
+        while(true){
+            music.setTempo(150)
+            music.playTone(784, music.beat(BeatFraction.Eighth))
+            basic.pause(100)
+        }
     }
 }
