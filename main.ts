@@ -68,13 +68,13 @@ namespace Drones {
         rxBuff = serial.readBuffer(3)
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
             radio.sendString("S")
-            SucFBbeep()
+            music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.OnceInBackground)
             return true
         }
         else {
             radio.sendString("F")
             while(true){
-                FailFBbeep()
+                music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
                 basic.pause(1000)
             }
         }
