@@ -97,10 +97,10 @@ namespace Drones {
         let rxBuff = pins.createBuffer(3)
         serial.readString()
         rxBuff = serial.readBuffer(3)
-        if(rxBuff[1]== 0x01){
+        if(rxBuff[1] == 0x01){
             SucFBbeep()
         }
-        else{
+        else if(rxBuff[1] == 0x02){
             FailFBbeep()
             while(true){}
         }
