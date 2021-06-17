@@ -57,12 +57,6 @@ namespace Drones {
         //% block="Height"
         Height = 0x02
     }
-    function SucFBbeep():void{
-        music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
-    }
-    function FailFBbeep():void{
-        music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
-    }
     function WaitCellback():boolean{
         basic.pause(1000)
         rxBuff = serial.readBuffer(3)
@@ -97,10 +91,12 @@ namespace Drones {
         serial.readString()
         rxBuff = serial.readBuffer(3)
         if(rxBuff[1] == 0x01){
-            SucFBbeep()
+basic.showNumber(0)
+            music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.Once)
         }
         else{
-            FailFBbeep()
+basic.showNumber(1)
+            music.startMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once)
             while(true){}
         }
         txBuff[0] = mode
