@@ -282,6 +282,7 @@ namespace Drones {
         txBuff[2] = 0x01
         txBuff[3] = urgentstate
         serial.writeBuffer(txBuff)
+        serial.redirectToUSB()
         while(true){
             music.setTempo(150)
             music.playTone(784, music.beat(BeatFraction.Eighth))
