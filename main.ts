@@ -97,7 +97,9 @@ namespace Drones {
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
         txBuff[0] = mode
         serial.writeBuffer(txBuff)
-        while(mode == Runmodes.Remote){}
+        if(mode == Runmodes.Remote){
+            serial.redirectToUSB()
+        }
         control.inBackground(function () {
             while(true) {
                 let breathBuff = pins.createBuffer(2)
