@@ -240,6 +240,7 @@ namespace Drones {
         txBuff[4] = time
         serial.writeBuffer(txBuff)
         basic.pause(time * 1000)
+        WaitCellback()
     }
 
     /**
