@@ -124,14 +124,11 @@ namespace Drones {
             }
 
         }
-        control.inBackground(function () {
-            while(true) {
-                let breathBuff = pins.createBuffer(2)
-                breathBuff[0] = 0xAF
-                breathBuff[1] = 0xFA
-                serial.writeBuffer(breathBuff)
-                basic.pause(1000)
-            }
+        loops.everyInterval(1000, function() {
+            let breathBuff = pins.createBuffer(2)
+            breathBuff[0] = 0xAF
+            breathBuff[1] = 0xFA
+            serial.writeBuffer(breathBuff)
         })
     }
     /**
