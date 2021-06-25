@@ -37,9 +37,9 @@ namespace Drones {
     }
     export enum Angleoptions{
         //% block="Left" 
-        Takeoff = 0x16,
+        Left = 0x16,
         //% block="Right"
-        Landing = 0x17
+        Right = 0x17
     }
     export enum Rolloptions{
         //% block="Roll forward" 
