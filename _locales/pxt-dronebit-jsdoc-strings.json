@@ -1,0 +1,9 @@
+{
+  "Drones": "Functions to UVA by ELECFREAKS Co.,Ltd.",
+  "Drones.Basic_action": "Shows a rainbow pattern on all LEDs.",
+  "Drones.Get_Sensor": "Shows a rainbow pattern on all LEDs.",
+  "Drones.Move_action": "Shows a rainbow pattern on all LEDs.",
+  "Drones.UAV_speed": "Shows a rainbow pattern on all LEDs.",
+  "Drones.Urgent_action": "Shows a rainbow pattern on all LEDs.",
+  "Drones.initModule": "Shows a rainbow pattern on all LEDs."
+}
