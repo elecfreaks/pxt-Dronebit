@@ -27,8 +27,6 @@
   "Drones.Urgent_action|block": "紧急指令 %urgentstate",
   "Drones.Urgentoptions.Emergency_stop|block": "紧急停车",
   "Drones.initModule|block": "初始化无人机为 %mode 模式",
-  "Drones|block": "大鹏比特",
-  "{id:category}Drones": "大鹏比特",
   "{id:group}Basic": "基础",
   "{id:group}Caution!": "紧急!"
 }
