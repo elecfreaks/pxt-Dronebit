@@ -62,20 +62,13 @@ namespace Drones {
         rxBuff = serial.readBuffer(3)
         if(rxBuff[0] == 0x01 && rxBuff[1] == 0x01){
             radio.sendString("S")
-            music.startMelody(music.builtInMelody(Melodies.BaDing), MelodyOptions.OnceInBackground)
             return true
         }
         else {
             radio.sendString("F")
-            music.setTempo(200)
-            for (let index = 0; index < 5; index++) {
-                music.playTone(784, music.beat(BeatFraction.Eighth))
-                basic.pause(100)
-                }
-            return false
-            }
             return false
         }
+    }
     
     /**
      * Shows a rainbow pattern on all LEDs.
