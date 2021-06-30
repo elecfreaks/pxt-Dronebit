@@ -1,1 +1,11 @@
-// 在此处测试；当此软件包作为插件使用时，将不会编译此软件包。
+Drones.initModule(Drones.Runmodes.Master)
+Drones.UAV_speed(80)
+Drones.Basic_action(Drones.Basicoptions.Takeoff)
+Drones.Move_action(Drones.Directionoptions.Forward, 100)
+basic.forever(function () {
+    if (Drones.Get_Sensor(Drones.Sensoroptions.Voltage) > 3.5) {
+        Drones.Hovering(10)
+    } else {
+        Drones.Basic_action(Drones.Basicoptions.Takeoff)
+    }
+})
