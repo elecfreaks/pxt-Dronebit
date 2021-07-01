@@ -2,7 +2,7 @@
 
 # Drone:bit Package
 
-![](/image.png/)
+![](/image.jpg/)
 
 This extension is designed to programme and drive the Drone:bit UAV, You can [get Drone:bit from the Elecfreaks store](https://www.elecfreaks.com/store)
 
