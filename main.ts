@@ -69,12 +69,7 @@ namespace Drones {
             return false
         }
     }
-    
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
+
     //% block="Initialize UAV to %mode mode"
     //% weight=100 group="Basic"
     export function initModule(mode:Runmodes):void{
@@ -124,11 +119,6 @@ namespace Drones {
             serial.writeBuffer(breathBuff)
         })
     }
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
     //% block="Setting UAV power $power \\%"
     //% power.min=0 power.max=100
     //% weight=90 group="Basic"
@@ -143,11 +133,6 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
     //% block="Basic action %basicstate"
     //% weight=89 group="Basic"
     export function Basic_action(basicstate: Basicoptions): void {
@@ -160,11 +145,7 @@ namespace Drones {
         serial.writeBuffer(txBuff)
         WaitCellback()
     }
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
+
     //% block="Move action %Directionstate by %distance cm"
     //% weight=70 group="Basic"
     export function Move_action(Directionstate: Directionoptions,distance:number): void {
@@ -233,11 +214,6 @@ namespace Drones {
         WaitCellback()
     }
 
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
     //% block="Get %state Value"
     //% weight=50 group="Basic"
     export function Get_Sensor(state:Sensoroptions): number{
@@ -258,11 +234,7 @@ namespace Drones {
         }
         
     }
-    /**
-     * Shows a rainbow pattern on all LEDs.
-     * @param startHue the start hue value for the rainbow, eg: 1
-     * @param endHue the end hue value for the rainbow, eg: 360
-     */
+
     //% block="Urgent action %urgentstate"
     //% weight=10 group="Caution!"
     export function Urgent_action(urgentstate:Urgentoptions):void{
