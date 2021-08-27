@@ -85,8 +85,13 @@ namespace Drones {
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
         txBuff[0] = mode
         serial.writeBuffer(txBuff)
+        loops.everyInterval(1000, function () {
+            let breathBuff = pins.createBuffer(2)
+            breathBuff[0] = 0xAF
+            breathBuff[1] = 0xFA
+            serial.writeBuffer(breathBuff)
+        })
         if(mode == Runmodes.Remote){
-            serial.redirectToUSB()
             while(true){
             basic.showLeds(`
             . . . . .
@@ -112,12 +117,7 @@ namespace Drones {
             }
 
         }
-        loops.everyInterval(1000, function() {
-            let breathBuff = pins.createBuffer(2)
-            breathBuff[0] = 0xAF
-            breathBuff[1] = 0xFA
-            serial.writeBuffer(breathBuff)
-        })
+
     }
     //% block="Setting UAV power $power \\%"
     //% power.min=0 power.max=100
