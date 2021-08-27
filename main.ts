@@ -87,12 +87,7 @@ namespace Drones {
         basic.pause(200)
         serial.writeBuffer(txBuff)
         basic.pause(200)
-        loops.everyInterval(1000, function () {
-            let breathBuff = pins.createBuffer(2)
-            breathBuff[0] = 0xAF
-            breathBuff[1] = 0xFA
-            serial.writeBuffer(breathBuff)
-        })
+
         if(mode == Runmodes.Remote){
             while(true){
             basic.showLeds(`
@@ -119,7 +114,12 @@ namespace Drones {
             }
 
         }
-
+        loops.everyInterval(1000, function () {
+            let breathBuff = pins.createBuffer(2)
+            breathBuff[0] = 0xAF
+            breathBuff[1] = 0xFA
+            serial.writeBuffer(breathBuff)
+        })
     }
     //% block="Setting UAV power $power \\%"
     //% power.min=0 power.max=100
