@@ -84,7 +84,9 @@ namespace Drones {
         }
         music.startMelody(music.builtInMelody(Melodies.PowerUp), MelodyOptions.OnceInBackground)
         txBuff[0] = mode
+        basic.pause(200)
         serial.writeBuffer(txBuff)
+        basic.pause(200)
         loops.everyInterval(1000, function () {
             let breathBuff = pins.createBuffer(2)
             breathBuff[0] = 0xAF
