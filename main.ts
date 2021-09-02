@@ -138,6 +138,16 @@ namespace Drones {
     //% block="Basic action %basicstate"
     //% weight=89 group="Basic"
     export function Basic_action(basicstate: Basicoptions): void {
+        if(basicstate == Basicoptions.Takeoff){
+            for (let index = 3; index <= 0; index--) {
+                basic.showNumber(index)
+                if (index == 0) {
+                    music.playTone(523, music.beat(BeatFraction.Double))
+                } else {
+                    music.playTone(262, music.beat(BeatFraction.Whole))
+                }
+            }
+        }
         serial.readString()
         let txBuff = pins.createBuffer(4)
         txBuff[0] = 0xEF
@@ -192,6 +202,7 @@ namespace Drones {
     }
     //% block="Roll action %rotationstate "
     //% weight=64 group="Basic"
+    //% deprecated=true
     export function Roll_action(rollstate:Rolloptions):void{
         serial.readString()
         let txBuff = pins.createBuffer(6)
