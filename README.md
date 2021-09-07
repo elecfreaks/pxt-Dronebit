@@ -17,7 +17,7 @@ This extension is designed to programme and drive the Drone:bit UAV, You can [ge
 ## Document
 
 You can get more information about Drone:bit on [ELECFREAKS WIKI](
-https://www.elecfreaks.com/learn-en/microbitKit/Drone_Kit/index.html)
+http://www.elecfreaks.com/learn-en/microbitKit/Drone_bit/Drone-bit.html)
 
 ## Basic usage
 * To initialize the UAV, you can set it to remote control mode and master control mode
