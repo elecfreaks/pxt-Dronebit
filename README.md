@@ -6,7 +6,11 @@
 
 Drone:bit is a new UAV based on micro:bit.
 
-It can achieve a series of flight actions, such as hovering at a fixed height, flying at a fixed point, rolling and so on, all of which are carried out by micro:bit Programming implementation.
+The micro:bit Drone:bit Kit has successfully combined micro:bit with drones, which has provided another possibility for students to create and explore in the sky.
+
+Through your operation, you can give it commands of hovering at a fixed altitude , flying from a waypoint, curvilinear flight, and rolling in the sky etc. even in the classrooms, get your first professional micro:bit Drone:bit Kit now!
+
+Drone:bit, take you to a new height!
 
 This extension is designed to programme and drive the Drone:bit UAV, You can [get Drone:bit from the Elecfreaks store](https://www.elecfreaks.com/micro-bit-drone-kit.html)
 
