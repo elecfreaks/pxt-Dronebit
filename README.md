@@ -12,12 +12,12 @@ Through your operation, you can give it commands of hovering at a fixed altitude
 
 Drone:bit, take you to a new height!
 
-This extension is designed to programme and drive the Drone:bit UAV, You can [get Drone:bit from the Elecfreaks store](https://www.elecfreaks.com/micro-bit-drone-kit.html)
+This extension is designed to programme and drive the Drone:bit UAV, You can [get Drone:bit from the Elecfreaks store](https://www.elecfreaks.com/micro-bit-drone-bit-kit-without-micro-bit-board.html)
 
 ## Document
 
 You can get more information about Drone:bit on [ELECFREAKS WIKI](
-http://www.elecfreaks.com/learn-en/microbitKit/Drone_bit/Drone-bit.html)
+https://www.elecfreaks.com/learn-en/microbitKit/Drone_bit/index.html)
 
 ## Basic usage
 * To initialize the UAV, you can set it to remote control mode and master control mode
